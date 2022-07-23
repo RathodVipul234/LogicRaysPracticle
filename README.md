@@ -8,7 +8,7 @@ LogicRaysPracticle
  ```
  step 2:activate virtualev
  ```
- source venv/bin/activat
+ source venv/bin/activate
  ```
  
  step 3: install all requeirenments
