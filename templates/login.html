@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+	{% if not is_otp_send %}
+	<form class="container" method="POST">
+		{% csrf_token %}
+		<h1>OTP Based Authentications</h1>
+		<div class="form-group">
+			<label for="exampleInputEmail1">Email address</label>
+				<input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+			<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+			</div>
+			
+		</div>
+		<button type="submit" class="btn btn-primary">send otp</button>
+	</form>
+	{% else %}
+	<div class="card container" style="width: 58rem;">
+			<div class="card-body">
+				<h5 class="card-title">
+					Email verification
+				</h5>
+				Enter the code we just send on your Email Id {{email}}
+			</div>
+			<form method="POST" action="{% url 'app:varification' %}" class="p-3">
+					{% csrf_token %}
+					<input type="hidden" name="email" class="form-control" value="{{email}}">
+					<input type="number" name="otp" class="form-control" placeholder="Enter OTP" required>
+					<button class="mt-2 btn-primary btn text-white" type="submit" class="btn btn-primary">submit</button>
+			</form>
+	</div>
+	{% endif %}
+{% endblock %}
