@@ -59,15 +59,15 @@ class SignInView(View):
         generated_otp = pyotp.HOTP(key).at(1)
         try:
             print("sending mail .....")
-            # send_mail(
-            #     "OTP",
-            #     f"Your OTP -{generated_otp}",
-            #     "my422kingheart.2728@gmail.com",
-            #     [
-            #         email,
-            #     ],
-            #     fail_silently=False,
-            # )
+            send_mail(
+                "OTP",
+                f"Your OTP -{generated_otp}",
+                "my422kingheart.2728@gmail.com",
+                [
+                    email,
+                ],
+                fail_silently=False,
+            )
             print("mail sent.....")
             user, created = User.objects.get_or_create(
                 email=email, defaults={"username": email.split("@")[0]}
